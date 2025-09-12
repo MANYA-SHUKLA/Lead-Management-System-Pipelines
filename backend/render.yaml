@@ -1,0 +1,13 @@
+# render.yaml
+services:
+  - type: web
+    name: lead-management-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        fromSecret: MONGODB_URI
+      - key: NODE_ENV
+        value: production
