@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Replace the API_BASE_URL line with:
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = 'https://lead-management-system-pipelines.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
