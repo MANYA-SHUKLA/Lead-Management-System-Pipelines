@@ -26,21 +26,13 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-// ---------- Production Setup ----------
-if (process.env.NODE_ENV === 'production') {
-  // Serve frontend build
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-  // Catch-all route for React Router
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
-  });
-}
-
-// ---------- Default API route ----------
+// Basic route
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Lead Management API' });
 });
+
+// Your API routes
+app.use('/api/leads', leadsRouter);
 
 // ---------- Start server ----------
 app.listen(PORT, () => {
