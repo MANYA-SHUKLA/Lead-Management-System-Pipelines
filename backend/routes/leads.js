@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Lead = require('../models/Lead');
 
-// GET all leads
+
 router.get('/', async (req, res) => {
   try {
     const leads = await Lead.find().sort({ createdAt: -1 });
@@ -12,12 +12,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET a single lead by ID
+
 router.get('/:id', getLead, (req, res) => {
   res.json(res.lead);
 });
 
-// CREATE a new lead
+
 router.post('/', async (req, res) => {
   const lead = new Lead({
     name: req.body.name,
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// UPDATE a lead
+
 router.patch('/:id', getLead, async (req, res) => {
   if (req.body.name != null) {
     res.lead.name = req.body.name;
@@ -69,7 +69,7 @@ router.patch('/:id', getLead, async (req, res) => {
   }
 });
 
-// DELETE a lead - FIXED VERSION
+
 router.delete('/:id', async (req, res) => {
   try {
     const lead = await Lead.findByIdAndDelete(req.params.id);
@@ -82,7 +82,7 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-// Middleware to get lead by ID
+
 async function getLead(req, res, next) {
   let lead;
   try {
