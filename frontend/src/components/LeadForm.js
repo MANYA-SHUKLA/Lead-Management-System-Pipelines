@@ -27,7 +27,7 @@ const LeadForm = ({ onLeadAdded, editLead, onCancelEdit }) => {
       [name]: value,
     });
 
-    // Real-time validation for the current field
+  
     if (touched[name]) {
       const validationErrors = validateLeadForm({ ...formData, [name]: value });
       setErrors({ ...errors, [name]: validationErrors[name] });
@@ -41,7 +41,7 @@ const LeadForm = ({ onLeadAdded, editLead, onCancelEdit }) => {
       [name]: true,
     });
 
-    // Validate the field that was just blurred
+   
     const validationErrors = validateLeadForm(formData);
     setErrors({ ...errors, [name]: validationErrors[name] });
   };
@@ -49,7 +49,7 @@ const LeadForm = ({ onLeadAdded, editLead, onCancelEdit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Mark all fields as touched to show all errors
+  
     const allTouched = Object.keys(formData).reduce((acc, key) => {
       acc[key] = true;
       return acc;
@@ -72,11 +72,10 @@ const LeadForm = ({ onLeadAdded, editLead, onCancelEdit }) => {
         await leadAPI.create(formData);
       }
       
-      // Show success animation
+      
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 2000);
       
-      // Reset form if not in edit mode
       if (!editLead) {
         setFormData({
           name: '',
